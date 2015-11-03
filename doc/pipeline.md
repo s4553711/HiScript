@@ -5,15 +5,18 @@
 - process app and resources
 - run job
 
-## Task
-### Attributes
-- jobId
-- jobName
-- jobQueue
-- script path
+## Attributes
+- name
+- taskId
 - task path
+- script path
 - input path
-- ouput path
+- out path
+
+## Method
+- clean
+- processApp
+- pj_initialize
 
 ## Setting
 ```json
@@ -60,3 +63,18 @@
 }
 ```
 The global setting of a app is writting in **apps/param**. But if there is sample-specific param, it will put under **samples/param**. 
+
+# Task
+## Attributes
+- jobId
+- jobName
+- jobQueue
+- script path
+- task path
+- input path
+- ouput path
+
+## Method
+- init
+- run
+- finish
