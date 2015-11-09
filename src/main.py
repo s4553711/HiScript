@@ -2,11 +2,19 @@
 import os
 import task
 import sys
+import pipeline
 import QC
+import TT
 
-print "Log> Job Start"
-q = QC.QC()
-q.setName("task-sample")
-q.init()
-q.run()
-q.finish()
+p = pipeline.pipeline();
+p.clean()
+p.processApp()
+p.pj_initialize()
+p.run()
+
+#print "Log> Job Start"
+#q = TT.TT()
+#q.setName("TT task-sample")
+#q.init()
+#q.run()
+#q.finish()

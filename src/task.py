@@ -40,7 +40,7 @@ class taskDef(object):
 	
     def setCurrentStateLog(self,input):
         self.currentStateLog = input
-	
+
     def init(self):
         print "Task Initialization"
 
