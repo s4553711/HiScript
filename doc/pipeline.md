@@ -12,8 +12,10 @@
 - script path
 - input path
 - out path
+- setting
 
 ## Method
+- read_config
 - clean
 - processApp
 - pj_initialize
