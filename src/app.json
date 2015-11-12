@@ -1,0 +1,30 @@
+{
+	"config" :{
+		"folder" : ["config", "config/script", "log", "output"]
+	},
+	"apps": [
+		{
+			"name" : "fastqc",
+			"attrs" : {
+				"source": "/opt/app/fastqc_v0.10.1",
+				"linkTarget": "config/fastqc"
+			}
+		},
+		{ 
+			"name" : "velvet",
+			"attrs" : {
+				"source": "/opt/app/velvet_1.2.10",
+				"linkTarget": "config/velvet"
+			}
+		}
+	],
+	"step" : [{
+		"name" : "fastqc",
+		"packageName" : "QC",
+		"className" : "QC"
+	},{
+		"name" : "Bwa",
+		"packageName" : "Bwa",
+		"className" : "Bwa
+	}]
+}

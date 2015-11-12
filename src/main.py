@@ -4,7 +4,7 @@ import task
 import sys
 import pipeline
 import QC
-import TT
+import Bwa
 
 p = pipeline.pipeline();
 p.clean()
