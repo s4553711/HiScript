@@ -6,6 +6,7 @@ import subprocess
 import sys
 import json
 import imp
+import time
 
 class pipeline(object):
     def __init__(self):
@@ -17,27 +18,29 @@ class pipeline(object):
         self.outputPath = ''
         self.setting = ''
 
+    def logger(self, message):
+        print("["+time.strftime('%Y-%m-%d %H:%M%p %Z')+"] "+message)
+
     def read_config(self):
         with open("app.json") as json_file:
             self.setting = json.load(json_file)
-            print(self.setting['apps'][0])
 
     def clean(self):
         self.read_config()
-        print "Start pipeline"
+        self.logger("Start pipeline")
 
     def processApp(self):
-        print "processApp"
+        self.logger("processApp")
 
     def pj_initialize(self):
-        print "initialize"
+        self.logger("initialize")
 
     def run(self):
         for step in self.setting['step']:
             mod = imp.load_source(step["packageName"], './')
             if hasattr(mod, step["className"]):
                 class_inst = getattr(mod, step["className"])()
-                class_inst.setName('QC-Job')
+                class_inst.setName(step['name'])
                 class_inst.init()
                 class_inst.run()
                 class_inst.finish()
