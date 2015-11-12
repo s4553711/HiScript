@@ -19,6 +19,7 @@
 - clean
 - processApp
 - pj_initialize
+- logger
 
 ## Setting
 ```json
