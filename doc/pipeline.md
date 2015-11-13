@@ -62,6 +62,15 @@
 	    "param" : {
 	        "velvet_h_category" : "shortPaired"
 	    }	
+	}],
+	"step" : [{
+		"name" : "fastqc",
+		"packageName" : "QC",
+		"className" : "QC"
+	},{
+		"name" : "Bwa",
+		"packageName" : "Bwa",
+		"className" : "Bwa"
 	}]
 }
 ```
