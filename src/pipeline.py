@@ -7,6 +7,7 @@ import sys
 import json
 import imp
 import time
+from pprint import pprint
 
 class pipeline(object):
     def __init__(self):
@@ -37,7 +38,7 @@ class pipeline(object):
 
     def run(self):
         for step in self.setting['step']:
-            mod = imp.load_source(step["packageName"], './')
+            mod = __import__(step["packageName"])
             if hasattr(mod, step["className"]):
                 class_inst = getattr(mod, step["className"])()
                 class_inst.setName(step['name'])
