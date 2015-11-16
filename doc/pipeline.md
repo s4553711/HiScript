@@ -66,11 +66,14 @@
 	"step" : [{
 		"name" : "fastqc",
 		"packageName" : "QC",
-		"className" : "QC"
+		"className" : "QC",
+		"jid" : "qc.R1"
 	},{
 		"name" : "Bwa",
 		"packageName" : "Bwa",
-		"className" : "Bwa"
+		"className" : "Bwa",
+		"jid" : "bwa.R1",
+		"holdjid" : "qc"
 	}]
 }
 ```
@@ -80,6 +83,7 @@ The global setting of a app is writting in **apps/param**. But if there is sampl
 ## Attributes
 - jobId
 - jobName
+- holdJobId
 - jobQueue
 - script path
 - task path
@@ -88,5 +92,6 @@ The global setting of a app is writting in **apps/param**. But if there is sampl
 
 ## Method
 - init
+- holdJob
 - run
 - finish
