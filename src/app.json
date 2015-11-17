@@ -1,6 +1,8 @@
 {
 	"config" :{
-		"folder" : ["config", "config/script", "log", "output"]
+		"folder" : ["config", "config/script", "log", "output"],
+		"output" : "log/analysis.log",
+		"log" : "log"
 	},
 	"apps": [
 		{
@@ -21,10 +23,13 @@
 	"step" : [{
 		"name" : "fastqc",
 		"packageName" : "QC",
-		"className" : "QC"
+		"className" : "QC",
+		"logName" : "log.qc"
 	},{
 		"name" : "Bwa",
 		"packageName" : "Bwa",
-		"className" : "Bwa"
+		"className" : "Bwa",
+		"prevLogName" : "log.qc",
+		"logName" : "log.bwa"
 	}]
 }

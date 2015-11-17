@@ -42,6 +42,11 @@ class pipeline(object):
             if hasattr(mod, step["className"]):
                 class_inst = getattr(mod, step["className"])()
                 class_inst.setName(step['name'])
+                class_inst.setLogFolder(self.setting['config']['log'])
+                class_inst.setCurrentStateLog(step['logName'])
+                if "prevLogName" in step:
+                    class_inst.setPrevStateLog(step['prevLogName']);
+
                 class_inst.init()
                 class_inst.run()
                 class_inst.finish()

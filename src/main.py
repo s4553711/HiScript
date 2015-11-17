@@ -3,8 +3,8 @@ import os
 import task
 import sys
 import pipeline
-import QC
-import Bwa
+#import QC
+#import Bwa
 
 p = pipeline.pipeline();
 p.clean()

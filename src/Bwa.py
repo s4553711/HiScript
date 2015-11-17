@@ -8,9 +8,10 @@ class Bwa(task.taskDef):
         super(Bwa, self).__init__()
                             
     def run(self):
+        super(Bwa, self).run()
         print "I am "+self.name
         try:
-            cmd = ["ls", "-al", "/"]
+            cmd = ["pwd"]
             p = subprocess.Popen(cmd, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
 
             while True:

@@ -8,6 +8,7 @@ class QC(task.taskDef):
         super(QC, self).__init__()
                             
     def run(self):
+        super(QC, self).run()
         print "I am "+self.name
         try:
             cmd = ["ls", "-al"]

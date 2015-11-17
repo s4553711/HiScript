@@ -13,6 +13,7 @@ class taskDef(object):
         self.taskPath = ''
         self.inputPath = ''
         self.outputPath = ''
+        self.prevStateLog = ''
 		
     def setName(self, name):
         self.name = name
@@ -41,11 +42,38 @@ class taskDef(object):
     def setCurrentStateLog(self,input):
         self.currentStateLog = input
 
+    def setLogFolder(self, input):
+        self.logPath = input
+
     def init(self):
         print "Task Initialization"
 
+    def checkStatus(self,fileName):
+        pattern = re.compile(".*?error|.*?stop")
+        status = "normal"
+        f = open(fileName,"r");
+        for line in f:
+            if pattern.match(line.strip()):
+                status = "error"
+                return status
+        return status
+
+    def holdJob(self):
+        status = True
+        if self.prevStateLog == "":
+            return status
+        for file in os.listdir(self.logPath):
+            if fnmatch.fnmatch(file,os.path.basename(self.prevStateLog)):
+                state = self.checkStatus(self.logPath+"/"+file)
+                if state == "error" or state == "stop": 
+                    status = False
+                    return status
+        return status
+
     def run(self):
-        print "Run job"
+        runCheckResult = self.holdJob()
+        if runCheckResult:
+            print "Run job"
 
     def finish(self):
         print "Finish job"
