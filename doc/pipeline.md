@@ -67,13 +67,13 @@
 		"name" : "fastqc",
 		"packageName" : "QC",
 		"className" : "QC",
-		"jid" : "qc.R1"
+		"logName" : "log.qc"
 	},{
 		"name" : "Bwa",
 		"packageName" : "Bwa",
 		"className" : "Bwa",
-		"jid" : "bwa.R1",
-		"holdjid" : "qc"
+		"prevLogName" : "log.qc",
+		"logName" : "log.bwa"
 	}]
 }
 ```
