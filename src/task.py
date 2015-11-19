@@ -2,6 +2,7 @@ import os
 import fnmatch
 import re
 import subprocess
+import time
 import sys
 
 class taskDef(object):
@@ -46,7 +47,16 @@ class taskDef(object):
         self.logPath = input
 
     def init(self):
-        print "Task Initialization"
+        self.initLog()
+
+    def initLog(self):
+        if not os.path.isdir(self.logPath):
+            os.makedirs(self.logPath)
+        self.logHandle = open(self.logPath+"/"+self.currentStateLog, "w+")
+
+    def logger(self, message):
+        self.logHandle.write("["+time.strftime('%Y-%m-%d %H:%M%p %Z')+"] "+message+"\n")
+        self.logHandle.flush()
 
     def checkStatus(self,fileName):
         pattern = re.compile(".*?error|.*?stop")
@@ -59,21 +69,22 @@ class taskDef(object):
         return status
 
     def holdJob(self):
-        status = True
         if self.prevStateLog == "":
-            return status
-        for file in os.listdir(self.logPath):
-            if fnmatch.fnmatch(file,os.path.basename(self.prevStateLog)):
-                state = self.checkStatus(self.logPath+"/"+file)
-                if state == "error" or state == "stop": 
-                    status = False
-                    return status
-        return status
+            return True
+        if os.path.isdir(self.logPath):
+            for file in os.listdir(self.logPath):
+                if fnmatch.fnmatch(file,os.path.basename(self.prevStateLog)):
+                    state = self.checkStatus(self.logPath+"/"+file)
+                    if state == "error" or state == "stop": 
+                        return False
+        return True
 
     def run(self):
         runCheckResult = self.holdJob()
         if runCheckResult:
+            self.logger("Job start")
             print "Run job"
 
     def finish(self):
+        self.logger("Job finish")
         print "Finish job"

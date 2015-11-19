@@ -9,7 +9,6 @@ class Bwa(task.taskDef):
                             
     def run(self):
         super(Bwa, self).run()
-        print "I am "+self.name
         try:
             cmd = ["pwd"]
             p = subprocess.Popen(cmd, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
@@ -20,6 +19,7 @@ class Bwa(task.taskDef):
                     break
                 if out != '':
                     print "TT> "+out.rstrip()
+                    super(Bwa, self).logger(out.rstrip())
                     sys.stdout.flush()
 
             p.communicate()

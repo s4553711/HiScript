@@ -9,7 +9,6 @@ class QC(task.taskDef):
                             
     def run(self):
         super(QC, self).run()
-        print "I am "+self.name
         try:
             cmd = ["ls", "-al"]
             p = subprocess.Popen(cmd, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
@@ -20,6 +19,7 @@ class QC(task.taskDef):
                     break
                 if out != '':
                     print "> "+out.rstrip()
+                    super(QC, self).logger(out.rstrip())
                     sys.stdout.flush()
 
             p.communicate()
