@@ -67,7 +67,8 @@
 		"name" : "fastqc",
 		"packageName" : "QC",
 		"className" : "QC",
-		"logName" : "log.qc"
+		"logName" : "log.qc",
+		"logFolder" : "QC"
 	},{
 		"name" : "Bwa",
 		"packageName" : "Bwa",
