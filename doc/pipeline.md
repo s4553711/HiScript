@@ -90,9 +90,14 @@ The global setting of a app is writting in **apps/param**. But if there is sampl
 - task path
 - input path
 - ouput path
+- prevStateLog
+- currentStateLog
+- logPath
 
 ## Method
 - init
+- initLog
+- logger
 - holdJob
 - run
 - finish
