@@ -51,5 +51,5 @@ class pipeline(object):
                     class_inst.setPrevStateLog(step['prevLogName']);
 
                 class_inst.init()
-                class_inst.run()
+                class_inst.runOge()
                 class_inst.finish()
