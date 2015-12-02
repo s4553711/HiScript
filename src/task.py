@@ -83,6 +83,9 @@ class taskDef(object):
                         return False
         return True
 
+    def pipeline_run(self):
+        print "pipeline run"
+
     def runOge(self):
         print "run by oge"
         with drmaa.Session() as s:
@@ -91,6 +94,7 @@ class taskDef(object):
             jt.errorPath = ":"+os.path.join(os.getcwd(), self.logPath, self.name+'.oge_out.log')
             jt.outputPath = ":"+os.path.join(os.getcwd(), self.logPath, self.name+'.oge_err.log')
             jt.remoteCommand = os.path.join(os.getcwd(), 'sleeper.sh')
+            jt.nativeSpecification = "-q " + self.queue
             jt.args = ['30', 'Google said:']
 
             jobid = s.runJob(jt)
