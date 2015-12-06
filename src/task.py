@@ -19,6 +19,7 @@ class taskDef(object):
         self.inputPath = ''
         self.outputPath = ''
         self.prevStateLog = ''
+        self.setting = ''
 		
     def setName(self, name):
         self.name = name
@@ -50,7 +51,12 @@ class taskDef(object):
     def setLogFolder(self, input):
         self.logPath = input
 
+    def read_config(self):
+        with open("app.json") as json_file:
+            self.setting = json.load(json_file)
+
     def init(self):
+        self.read_config()
         self.initLog()
 
     def initLog(self):

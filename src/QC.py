@@ -6,7 +6,7 @@ import task
 class QC(task.taskDef):
     def __init__(self):
         super(QC, self).__init__()
-                            
+
     def run(self):
         super(QC, self).run()
         try:
@@ -31,3 +31,7 @@ class QC(task.taskDef):
             print "ERROR > ",sys.exc_info()
             print "ERROR > ",type(ins)
             print "ERROR > ",ins.args
+
+if __name__ == "__main__":
+    ins = QC()
+    ins.pipeline_run()
