@@ -54,6 +54,9 @@ class taskDef(object):
     def read_config(self):
         with open("app.json") as json_file:
             self.setting = json.load(json_file)
+        for step in self.setting['step']:
+            if self.__class__.__name__ == step['classBane']:
+                self.settingObj = step
 
     def init(self):
         self.read_config()
@@ -90,7 +93,10 @@ class taskDef(object):
         return True
 
     def pipeline_run(self):
+        self.init()
         print "pipeline run"
+        self.run()
+        self.finish()
 
     def runOge(self):
         print "run by oge"
