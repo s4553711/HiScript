@@ -3,6 +3,7 @@ import fnmatch
 import re
 import subprocess
 import time
+import json
 import sys
 
 lib_path = os.path.abspath(os.path.join('drmaa-python'))
@@ -55,11 +56,17 @@ class taskDef(object):
         with open("app.json") as json_file:
             self.setting = json.load(json_file)
         for step in self.setting['step']:
-            if self.__class__.__name__ == step['classBane']:
+            if self.__class__.__name__ == step['className']:
                 self.settingObj = step
 
     def init(self):
         self.read_config()
+        self.setName(self.settingObj['name'])
+        self.setCurrentStateLog(self.settingObj['logName'])
+        if "logFolder" in self.settingObj:
+            self.setLogFolder(os.path.join(self.setting['config']['log'], self.settingObj['logFolder']))
+        else:
+            self.setLogFolder(self.setting['config']['log'])
         self.initLog()
 
     def initLog(self):
