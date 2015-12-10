@@ -32,6 +32,7 @@ class pipeline(object):
 
     def clean(self):
         self.read_config()
+        self.logHandler = open(self.setting['config']['log']+"/jid_list", "w+")
         self.logger("Start pipeline")
 
     def processApp(self):
@@ -71,4 +72,7 @@ class pipeline(object):
                         print('Your job has been submitted with ID %s' % jobid)
                         print('Job stats is '+s.jobStatus(jobid))
                         print('Cleaning up')
+                        self.logHandler.write("JID-"+step["packageName"]+"-"+step["className"]+":"+jobid+"\n")
+                        self.logHandler.flush()
                         s.deleteJobTemplate(jt)
+        self.logHandler.close()
