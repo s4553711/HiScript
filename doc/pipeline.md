@@ -101,3 +101,5 @@ The global setting of a app is writting in **apps/param**. But if there is sampl
 - holdJob
 - run
 - finish
+- read_config
+- pipeline_run
