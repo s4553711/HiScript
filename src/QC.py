@@ -6,9 +6,9 @@ import task
 class QC(task.taskDef):
     def __init__(self):
         super(QC, self).__init__()
-                            
+
     def run(self):
-        print "I am "+self.name
+        super(QC, self).run()
         try:
             cmd = ["ls", "-al"]
             p = subprocess.Popen(cmd, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
@@ -19,6 +19,7 @@ class QC(task.taskDef):
                     break
                 if out != '':
                     print "> "+out.rstrip()
+                    super(QC, self).logger(out.rstrip())
                     sys.stdout.flush()
 
             p.communicate()
@@ -30,3 +31,7 @@ class QC(task.taskDef):
             print "ERROR > ",sys.exc_info()
             print "ERROR > ",type(ins)
             print "ERROR > ",ins.args
+
+if __name__ == "__main__":
+    ins = QC()
+    ins.pipeline_run()

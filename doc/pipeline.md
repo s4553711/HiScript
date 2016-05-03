@@ -62,6 +62,19 @@
 	    "param" : {
 	        "velvet_h_category" : "shortPaired"
 	    }	
+	}],
+	"step" : [{
+		"name" : "fastqc",
+		"packageName" : "QC",
+		"className" : "QC",
+		"logName" : "log.qc",
+		"logFolder" : "QC"
+	},{
+		"name" : "Bwa",
+		"packageName" : "Bwa",
+		"className" : "Bwa",
+		"prevLogName" : "log.qc",
+		"logName" : "log.bwa"
 	}]
 }
 ```
@@ -71,13 +84,22 @@ The global setting of a app is writting in **apps/param**. But if there is sampl
 ## Attributes
 - jobId
 - jobName
+- holdJobId
 - jobQueue
 - script path
 - task path
 - input path
 - ouput path
+- prevStateLog
+- currentStateLog
+- logPath
 
 ## Method
 - init
+- initLog
+- logger
+- holdJob
 - run
 - finish
+- read_config
+- pipeline_run

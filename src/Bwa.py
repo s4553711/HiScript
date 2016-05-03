@@ -8,9 +8,9 @@ class Bwa(task.taskDef):
         super(Bwa, self).__init__()
                             
     def run(self):
-        print "I am "+self.name
+        super(Bwa, self).run()
         try:
-            cmd = ["ls", "-al", "/"]
+            cmd = ["pwd"]
             p = subprocess.Popen(cmd, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
 
             while True:
@@ -19,6 +19,7 @@ class Bwa(task.taskDef):
                     break
                 if out != '':
                     print "TT> "+out.rstrip()
+                    super(Bwa, self).logger(out.rstrip())
                     sys.stdout.flush()
 
             p.communicate()

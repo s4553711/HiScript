@@ -1,0 +1,3 @@
+[submodule "src/drmaa-python"]
+	path = src/drmaa-python
+	url = https://github.com/pygridtools/drmaa-python.git
